@@ -194,6 +194,8 @@ export const faq: { question: string; answer: string[] }[] = [
 // Sans engagement, un supplément mensuel s'ajoute, résiliable à tout moment.
 export type Commitment = "engaged" | "free";
 export const NO_COMMITMENT_SURCHARGE = 10; // € HT par mois
+// Économie sur une année d'engagement par rapport à la formule sans engagement (calculée)
+export const YEARLY_SAVING = NO_COMMITMENT_SURCHARGE * 12;
 export const commitmentLabels: Record<Commitment, { toggle: string; short: string; note: string }> = {
   engaged: { toggle: "Engagement 12 mois", short: "12 mois", note: "Engagement 12 mois" },
   free: { toggle: "Sans engagement", short: "Sans engagement", note: "Résiliable à tout moment" },

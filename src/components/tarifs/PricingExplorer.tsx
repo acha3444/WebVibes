@@ -9,6 +9,7 @@ import {
   firstMonth,
   monthlyPrice,
   NO_COMMITMENT_SURCHARGE,
+  YEARLY_SAVING,
   type Commitment,
   formatEuro,
   getPlan,
@@ -62,7 +63,7 @@ function Segmented<T extends string>({
   label: string;
   value: T;
   onChange: (v: T) => void;
-  options: readonly { value: T; label: string; short?: string; extra?: string }[];
+  options: readonly { value: T; label: string; short?: string; extra?: string; badge?: string }[];
 }) {
   const second = value === options[1].value;
   return (
@@ -92,6 +93,11 @@ function Segmented<T extends string>({
             o.label
           )}
           {o.extra && <span className="ml-1 sm:ml-1.5 text-xs font-bold text-electric">{o.extra}</span>}
+          {o.badge && (
+            <span className="hidden sm:inline-block ml-2 bg-lime text-ink px-1.5 py-0.5 text-[11px] font-bold leading-none align-middle">
+              {o.badge}
+            </span>
+          )}
         </button>
       ))}
     </div>
@@ -102,6 +108,7 @@ function PlanCard({
   plan,
   mode,
   commitment,
+  onEngage,
   emphasized,
   badge,
   index,
@@ -109,6 +116,7 @@ function PlanCard({
   plan: Plan;
   mode: Mode;
   commitment: Commitment;
+  onEngage: () => void;
   emphasized: boolean;
   badge: string | null;
   index: number;
@@ -179,6 +187,24 @@ function PlanCard({
             {commitmentLabels[commitment].note}
           </span>
         </p>
+
+        {/* Économie annuelle avec engagement */}
+        <div className="min-h-7 mt-1.5 flex items-center">
+          {commitment === "engaged" ? (
+            <span key="saving" className="wv-badge-pop inline-block bg-lime text-ink px-2 py-1 text-xs font-bold">
+              {formatEuro(YEARLY_SAVING)} HT économisés sur l&apos;année
+            </span>
+          ) : (
+            <button
+              key="nudge"
+              type="button"
+              onClick={onEngage}
+              className="wv-fade-in text-xs font-semibold text-electric underline underline-offset-2 hover:text-ink transition-colors text-left"
+            >
+              Avec engagement : −{formatEuro(YEARLY_SAVING)} HT par an
+            </button>
+          )}
+        </div>
 
         <ul className="flex-1 mt-4 pt-4 sm:mt-6 sm:pt-6 border-t border-ink/10 space-y-2.5 text-[15px] leading-snug">
           {plan.highlights.map((point) => (
@@ -306,7 +332,12 @@ export function PricingExplorer() {
           value={commitment}
           onChange={setCommitment}
           options={[
-            { value: "engaged", label: commitmentLabels.engaged.toggle, short: commitmentLabels.engaged.short },
+            {
+              value: "engaged",
+              label: commitmentLabels.engaged.toggle,
+              short: commitmentLabels.engaged.short,
+              badge: `−${formatEuro(YEARLY_SAVING)}/an`,
+            },
             {
               value: "free",
               label: commitmentLabels.free.toggle,
@@ -367,6 +398,7 @@ export function PricingExplorer() {
                 plan={plan}
                 mode={mode}
                 commitment={commitment}
+                onEngage={() => setCommitment("engaged")}
                 index={i}
                 emphasized={emphasizedId === id}
                 badge={badge}
