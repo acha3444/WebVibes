@@ -1,0 +1,15 @@
+{
+  "app": {
+    "[project]/src/app/page": [
+      "static/media/7ddd198311ba7843-s.p.3kq6k02b2ysv1.woff2",
+      "static/media/198ae8d35cda456e-s.p.0z618w9m4quiq.woff2"
+    ],
+    "[project]/src/app/tarifs/page": [
+      "static/media/7ddd198311ba7843-s.p.3kq6k02b2ysv1.woff2",
+      "static/media/198ae8d35cda456e-s.p.0z618w9m4quiq.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

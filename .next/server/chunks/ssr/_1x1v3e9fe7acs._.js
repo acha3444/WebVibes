@@ -1,0 +1,3 @@
+(()=>{"use strict";module.exports=[33354,(a,b,c)=>{c._=function(a){return a&&a.__esModule?a:{default:a}}},90288,a=>{var b=a.i(87924),c=a.i(72131);a.s(["default",0,function({children:a,className:d="",once:e=!1,decorative:f=!0}){let g=(0,c.useRef)(null),[h,i]=(0,c.useState)(!1);return(0,c.useEffect)(()=>{let a=g.current;if(!a)return;let b=new IntersectionObserver(([a])=>{e?a.isIntersecting&&(i(!0),b.disconnect()):i(a.isIntersecting)},{threshold:0,rootMargin:"0px 0px -12% 0px"});return b.observe(a),()=>b.disconnect()},[e]),(0,b.jsx)("div",{ref:g,"data-playing":h,className:`wv-stage ${d}`,"aria-hidden":f||void 0,children:a})}])}]})();
+
+//# sourceMappingURL=_1x1v3e9fe7acs._.js.map

@@ -1,0 +1,9 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/page": "/",
+  "/robots.txt/route": "/robots.txt",
+  "/site-internet-artisan/page": "/site-internet-artisan",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/tarifs/page": "/tarifs"
+}
