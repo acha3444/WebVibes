@@ -131,24 +131,24 @@ export function MobileMenu({ links }: { links: NavLink[] }) {
           }`}
           style={{ transitionDelay: open ? "320ms" : "0ms" }}
         >
-          <Link
-            href="/#devis"
-            onClick={close}
-            className="block text-center bg-electric text-white px-6 py-4 font-semibold tag-cut-corner"
-          >
-            Demander un devis
-          </Link>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
-            className="block text-center border-2 border-electric text-electric px-6 py-3.5 font-semibold tag-cut-corner"
+            className="block text-center bg-electric text-white px-6 py-4 font-semibold tag-cut-corner"
           >
             Prendre rendez-vous
             <span className="sr-only"> (nouvel onglet)</span>
           </a>
-          <p className="pt-1 text-center text-xs text-ink/70">Devis gratuit et sans engagement.</p>
+          <Link
+            href="/#devis"
+            onClick={close}
+            className="block text-center border-2 border-electric text-electric px-6 py-3.5 font-semibold tag-cut-corner"
+          >
+            Demander un devis
+          </Link>
+          <p className="pt-1 text-center text-xs text-ink/70">Gratuit et sans obligation.</p>
         </div>
       </div>
     </div>

@@ -16,15 +16,17 @@ import {
   TODO,
 } from "@/data/tarifs";
 
+const basePrice = plans[0].monthly;
+
 const description =
-  "Trois formules pour votre site internet, dès 89 € TTC/mois. Création, hébergement, nom de domaine et maintenance inclus. Vous ne gérez rien. Réservé aux professionnels.";
+  `Trois formules pour votre site internet, dès ${basePrice} €/mois. Création, hébergement, maintenance inclus. Vous ne gérez rien. Réservé aux professionnels.`;
 
 export const metadata: Metadata = {
-  title: "Tarifs site internet commerce et artisan, dès 89 € TTC/mois | WebVibes",
+  title: `Tarifs site internet commerce et artisan, dès ${basePrice} €/mois | WebVibes`,
   description,
   alternates: { canonical: `${SITE_URL}/tarifs` },
   openGraph: {
-    title: "Tarifs WebVibes : un site pour votre activité, dès 89 € TTC/mois",
+    title: `Tarifs WebVibes : un site pour votre activité, dès ${basePrice} €/mois`,
     description,
     url: `${SITE_URL}/tarifs`,
     siteName: "WebVibes",
@@ -42,7 +44,7 @@ const jsonLd = {
   url: `${SITE_URL}/tarifs`,
   provider: { "@type": "Organization", name: "WebVibes", url: SITE_URL },
   areaServed: { "@type": "Country", name: "France" },
-  audience: { "@type": "BusinessAudience", audienceType: "Restaurants et professionnels de la restauration" },
+  audience: { "@type": "BusinessAudience", audienceType: "Artisans, commerçants de proximité et indépendants" },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Formules WebVibes",

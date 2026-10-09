@@ -9,8 +9,7 @@ import {
   desktopOrder,
   firstMonth,
   monthlyPrice,
-  NO_COMMITMENT_SURCHARGE,
-  YEARLY_SAVING,
+  totalEngaged,
   type Commitment,
   formatEuro,
   getPlan,
@@ -174,37 +173,26 @@ function PlanCard({
           </span>
         </p>
         <p key={mode + commitment + tax} aria-hidden className="wv-fade-in mt-2 text-sm text-ink/75 leading-snug min-h-[3.5rem]">
-          {mode === "monthly" ? (
-            <>+ {formatEuro(setup)} {tax} de création et mise en ligne, une seule fois</>
+          {commitment === "engaged" ? (
+            <>
+              {formatEuro(setup)} de création + 12 mois à {formatEuro(monthly)}
+              <br />
+              = <strong className="text-ink">{formatEuro(totalEngaged(plan))} la 1ère année</strong>
+            </>
           ) : (
             <>
-              {formatEuro(setup)} de création + {formatEuro(monthly)} d&apos;abonnement.
+              {formatEuro(setup)} de création + {formatEuro(monthly)} d&apos;abonnement
               <br />
-              Ensuite : <strong className="text-ink">{formatEuro(monthly)} {tax}/mois</strong>
+              = <strong className="text-ink">{formatEuro(first)} le premier mois</strong>
             </>
           )}
-          <span className="mt-1 flex items-center gap-1.5 font-semibold text-ink">
+        </p>
+
+        <div className="min-h-7 mt-1.5 flex items-center">
+          <span className="flex items-center gap-1.5 text-sm font-semibold text-ink">
             <span className={`w-2 h-2 rounded-full ${commitment === "free" ? "bg-lime ring-1 ring-ink/40" : "bg-electric"}`} />
             {commitmentLabels[commitment].note}
           </span>
-        </p>
-
-        {/* Économie annuelle avec engagement */}
-        <div className="min-h-7 mt-1.5 flex items-center">
-          {commitment === "engaged" ? (
-            <span key="saving" className="wv-badge-pop inline-block bg-lime text-ink px-2 py-1 text-xs font-bold">
-              {formatEuro(YEARLY_SAVING)} {PRICE_LABEL} économisés sur l&apos;année
-            </span>
-          ) : (
-            <button
-              key="nudge"
-              type="button"
-              onClick={onEngage}
-              className="wv-fade-in text-xs font-semibold text-electric underline underline-offset-2 hover:text-ink transition-colors text-left"
-            >
-              Avec engagement : −{formatEuro(YEARLY_SAVING)} {PRICE_LABEL} par an
-            </button>
-          )}
         </div>
 
         <ul className="flex-1 mt-4 pt-4 sm:mt-6 sm:pt-6 border-t border-ink/10 space-y-2.5 text-[15px] leading-snug">
@@ -337,13 +325,12 @@ export function PricingExplorer() {
               value: "engaged",
               label: commitmentLabels.engaged.toggle,
               short: commitmentLabels.engaged.short,
-              badge: `−${formatEuro(YEARLY_SAVING)}/an`,
             },
             {
               value: "free",
               label: commitmentLabels.free.toggle,
               short: commitmentLabels.free.short,
-              extra: `+${formatEuro(NO_COMMITMENT_SURCHARGE)}`,
+              extra: `+10 €`,
             },
           ]}
         />

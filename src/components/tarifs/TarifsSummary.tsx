@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { desktopOrder, formatEuro, getPlan, legalNotice, NO_COMMITMENT_SURCHARGE, PRICE_LABEL } from "@/data/tarifs";
+import { desktopOrder, formatEuro, getPlan, legalNotice, PRICE_LABEL } from "@/data/tarifs";
 
 // Bloc résumé des tarifs pour la page d'accueil, renvoie vers /tarifs.
 export function TarifsSummary() {
@@ -56,7 +56,7 @@ export function TarifsSummary() {
 
       <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p className="text-xs sm:text-sm text-ink/75">
-          {legalNotice} Prix avec engagement de 12 mois, ou sans engagement pour +{NO_COMMITMENT_SURCHARGE}&nbsp;€ {PRICE_LABEL}/mois.
+          {legalNotice} Prix avec engagement de 12 mois, ou sans engagement pour +10&nbsp;€/mois.
         </p>
         <Link
           href="/tarifs"

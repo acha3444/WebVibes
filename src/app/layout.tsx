@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Work_Sans, BioRhyme } from "next/font/google";
 import "./globals.css";
+import { plans } from "@/data/tarifs";
+
+const basePrice = plans[0].monthly;
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -15,10 +18,10 @@ const bioRhyme = BioRhyme({
 
 export const metadata: Metadata = {
   title: "Création de site internet pour artisans & commerçants | WebVibes",
-  description: "WebVibes crée votre site internet clé en main dès 89€/mois avec engagement 12 mois. Dédié aux artisans, commerçants de proximité et restaurateurs. Ne perdez plus de clients en ligne.",
+  description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux artisans et commerçants de proximité. Zéro technique à gérer.`,
   openGraph: {
     title: "Création de site internet pour artisans & commerçants | WebVibes",
-    description: "WebVibes crée votre site internet clé en main dès 89€/mois avec engagement 12 mois. Dédié aux artisans et commerçants de proximité.",
+    description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux artisans et commerçants de proximité.`,
     url: "https://webvibes.fr",
     siteName: "WebVibes",
     locale: "fr_FR",

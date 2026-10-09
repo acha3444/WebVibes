@@ -12,7 +12,7 @@ import { BoucherieDemo, PrimeurDemo, RestaurantDemo } from "@/components/demos/D
 
 const processSteps = [
   { title: "Le contact", text: "On s'appelle 20 minutes, ou je passe vous voir. On discute de ce que vous faites et de ce dont vos clients ont besoin. Pas de termes techniques." },
-  { title: "Le devis", text: "Chaque commerce est différent. Je vous envoie un devis gratuit et sans engagement, adapté à vos vrais besoins." },
+  { title: "Le devis", text: "Je vous recommande la formule qui suffit. Le devis reprend le prix affiché, seuls les besoins spécifiques hors formule sont chiffrés à part." },
   { title: "La création", text: "Je rassemble vos photos et infos (ou je vous aide à les créer), puis je fabrique le site. Vous validez le résultat." },
   { title: "La sérénité", text: "Le site est en ligne. À partir de là, vous m'envoyez simplement un SMS ou un e-mail quand quelque chose change. Je m'occupe du reste." },
 ];
@@ -94,22 +94,22 @@ export default function Home() {
             </div>
             <div className="wv-intro-fade">
               <p className="text-base sm:text-xl text-ink/80 mb-7 sm:mb-10 leading-relaxed">
-                Horaires, carte, fermeture exceptionnelle : vous m&apos;envoyez un message, c&apos;est en ligne.
+                Horaires, carte, fermeture exceptionnelle : vous m&apos;envoyez un message, c&apos;est en ligne (selon votre formule).
                 <span className="hidden sm:inline"> Chaque commerce a besoin d&apos;être trouvé, mais vous n&apos;avez pas le temps de gérer la technique.</span>
               </p>
               <div className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 sm:gap-6">
-                <a href="#devis" className="w-full sm:w-auto text-center bg-electric text-white px-6 py-3.5 sm:py-3 font-semibold tag-cut-corner hover:bg-electric/90 transition-colors">
-                  Demander un devis
-                </a>
-                <a href="#rendez-vous" className="text-ink font-semibold border-b-2 border-electric pb-0.5 hover:text-electric transition-colors">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto text-center bg-electric text-white px-6 py-3.5 sm:py-3 font-semibold tag-cut-corner hover:bg-electric/90 transition-colors">
                   Prendre rendez-vous
+                </a>
+                <a href="#devis" className="text-ink font-semibold border-b-2 border-electric pb-0.5 hover:text-electric transition-colors">
+                  Demander un devis
                 </a>
               </div>
 
               <dl className="mt-6 sm:mt-12 pt-4 sm:pt-6 border-t border-ink/10 grid grid-cols-3 gap-3 sm:gap-5 text-[13px] sm:text-sm">
                 <div>
                   <dt className="font-bold leading-snug">Devis gratuit</dt>
-                  <dd className="hidden sm:block text-ink/60 mt-0.5">Sans engagement, adapté à votre commerce.</dd>
+                  <dd className="hidden sm:block text-ink/60 mt-0.5">Sans obligation, adapté à votre commerce.</dd>
                 </div>
                 <div>
                   <dt className="font-bold leading-snug">Un seul interlocuteur</dt>
@@ -151,7 +151,7 @@ export default function Home() {
                 Poissonniers
               </h3>
               <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed">
-                Mise à jour rapide de l'arrivage du jour et des produits de saison. Les clients savent ce qu'il y a sur l'étal avant de venir.
+                Mise à jour rapide de l'arrivage et des produits de saison (fréquence selon formule). Les clients savent ce qu'il y a sur l'étal avant de venir.
               </p>
             </article>
             <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
@@ -229,7 +229,7 @@ export default function Home() {
                 </li>
                 <li className="flex gap-3 sm:gap-4 pt-1 sm:pt-2">
                   <span className="font-bold opacity-50 shrink-0 w-[5.5rem] sm:w-24">Au quotidien</span>
-                  <span>Un message suffit pour tout modifier.</span>
+                  <span>Un message suffit pour modifier votre contenu (selon votre formule).</span>
                 </li>
               </ul>
             </div>
@@ -313,7 +313,7 @@ export default function Home() {
           >
             Choisir un créneau
           </a>
-          <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-ink/40 font-medium uppercase tracking-widest">Gratuit et sans engagement</p>
+          <p className="mt-4 sm:mt-6 text-xs sm:text-sm text-ink/40 font-medium uppercase tracking-widest">Gratuit et sans obligation</p>
         </div>
       </section>
 
@@ -321,7 +321,7 @@ export default function Home() {
       <section id="devis" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-ink text-white">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-serif text-[1.75rem] sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-6 text-cream">Demander un devis</h2>
-          <p className="text-cream/70 mb-8 sm:mb-12 text-base sm:text-lg">Chaque commerce est différent, le devis est gratuit et sans engagement.</p>
+          <p className="text-cream/70 mb-8 sm:mb-12 text-base sm:text-lg">Chaque commerce est différent, le devis est gratuit et sans obligation.</p>
           
           <form action={sendQuoteAction} className="space-y-4 sm:space-y-6">
             {/* Honeypot anti-spam */}
@@ -398,13 +398,7 @@ export default function Home() {
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold mb-6 sm:mb-12">Questions fréquentes</h2>
           <div className="space-y-5 sm:space-y-8">
 
-            <details className="group border-b border-ink/10 pb-4 sm:pb-6">
-              <summary className="font-bold text-base sm:text-lg cursor-pointer list-none flex justify-between items-center gap-4 pr-1 sm:pr-2 py-1">
-                Et si je veux arrêter le suivi ?
-                <span className="shrink-0 text-electric font-serif text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
-              </summary>
-              <p className="mt-3 sm:mt-4 text-[15px] sm:text-base text-ink/75 leading-relaxed">Vous choisissez : sans engagement à 99 € TTC/mois, résiliable à tout moment, ou avec un engagement de 12 mois à 89 € TTC/mois.</p>
-            </details>
+            {/* [BLOQUANT - Tâche F : "Et si je veux arrêter le suivi ?" n'a pas été réécrit car D4, D5 et D6 sont À REMPLIR. La question est masquée temporairement.] */}
             
             <details className="group border-b border-ink/10 pb-4 sm:pb-6">
               <summary className="font-bold text-base sm:text-lg cursor-pointer list-none flex justify-between items-center gap-4 pr-1 sm:pr-2 py-1">
@@ -427,7 +421,7 @@ export default function Home() {
                 J'ai déjà une page Facebook, à quoi bon ?
                 <span className="shrink-0 text-electric font-serif text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
               </summary>
-              <p className="mt-3 sm:mt-4 text-[15px] sm:text-base text-ink/75 leading-relaxed">Facebook oblige vos clients à avoir un compte, à scroller au milieu des publicités, et masque parfois vos publications. Un site internet est votre propriété : clair, accessible à tous instantanément depuis Google, et dédié 100% à vos produits.</p>
+              <p className="mt-3 sm:mt-4 text-[15px] sm:text-base text-ink/75 leading-relaxed">Facebook oblige vos clients à avoir un compte, à scroller au milieu des publicités, et masque parfois vos publications. Un site internet est clair, accessible à tous instantanément depuis Google, et dédié 100% à vos produits.</p>
             </details>
           </div>
         </div>

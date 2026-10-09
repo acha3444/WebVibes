@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MobileMenu, type NavLink } from "./MobileMenu";
+import { BOOKING_URL } from "@/data/site";
 
 const links: NavLink[] = [
   { href: "/#services", label: "Pour quel commerce" },
@@ -28,10 +29,12 @@ export function Header() {
         ))}
       </nav>
       <div className="flex items-center gap-2 sm:gap-4">
-        <Link href="/#devis" className="bg-electric text-white px-3 sm:px-4 py-2 text-[13px] sm:text-sm font-semibold tag-cut-corner whitespace-nowrap hover:bg-electric/90 transition-colors">
-          <span className="sm:hidden">Devis gratuit</span>
-          <span className="hidden sm:inline">Demander un devis</span>
+        <Link href="/#devis" className="hidden lg:inline text-[13px] sm:text-sm font-medium hover:text-electric transition-colors mr-2">
+          Devis
         </Link>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="bg-electric text-white px-3 sm:px-4 py-2 text-[13px] sm:text-sm font-semibold tag-cut-corner whitespace-nowrap hover:bg-electric/90 transition-colors">
+          Prendre rendez-vous
+        </a>
         <MobileMenu links={links} />
       </div>
     </header>

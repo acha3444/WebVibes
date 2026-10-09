@@ -26,11 +26,11 @@ Le site dit aujourd'hui des choses différentes selon les pages. Un client (ou u
   - `src/app/layout.tsx` : description Google de l'accueil (lignes `description`) ;
   - `src/app/site-internet-artisan/page.tsx` : description Google et titre « pour 99€/mois ».
   → Dis-moi si l'offre artisans a son propre prix (99 €) ou si tout passe à 79 € HT.
-- [ ] **Engagement** : la FAQ de l'accueil (`src/app/page.tsx`, question « Et si je veux arrêter le suivi ? ») dit « L'offre est sans engagement… sans aucune pénalité ». Or la page Tarifs dit maintenant : engagement 12 mois au prix affiché, ou sans engagement pour +10 € HT/mois. À réécrire dans ce sens. Il me manque une info : **que se passe-t-il si un client engagé 12 mois veut partir avant la fin ?** (il paie les mois restants, des frais fixes, rien ?)
-- [ ] **Propriété** : la FAQ de l'accueil (question « Le site est-il à moi ? ») dit « Vous êtes 100% propriétaire de votre nom de domaine et de votre site ». À confirmer, ou à corriger avec ta réponse du point 1.
-- [ ] **Délai de 48 h** : annoncé dans la FAQ de l'accueil (« en ligne sous 48h ») et sur la page artisans (« prête dans 48h », « Sous 48 heures »). Peux-tu le tenir à chaque fois ? Sinon, donne-moi un délai réaliste.
-- [ ] **Badge « Le plus choisi »** sur la formule Standard (`src/data/tarifs.ts`, `featured`) : c'est vrai aujourd'hui ? Si tu n'as pas encore assez de clients pour le dire, remplace par « Recommandé ».
-- [ ] **Public visé** : l'accueil parle à tous les commerces de quartier (bouchers, primeurs…), la page Tarifs parle uniquement de restaurants. Les tarifs valent-ils pour tous les commerces ?
+- [x] **Engagement** : la FAQ de l'accueil (`src/app/page.tsx`, question « Et si je veux arrêter le suivi ? ») dit « L'offre est sans engagement… sans aucune pénalité ». Or la page Tarifs dit maintenant : engagement 12 mois au prix affiché, ou sans engagement pour +10 € HT/mois. À réécrire dans ce sens. Il me manque une info : **que se passe-t-il si un client engagé 12 mois veut partir avant la fin ?** (il paie les mois restants, des frais fixes, rien ?)
+- [x] **Propriété** : la FAQ de l'accueil (question « Le site est-il à moi ? ») dit « Vous êtes 100% propriétaire de votre nom de domaine et de votre site ». À confirmer, ou à corriger avec ta réponse du point 1.
+- [x] **Délai de 48 h** : annoncé dans la FAQ de l'accueil (« en ligne sous 48h ») et sur la page artisans (« prête dans 48h », « Sous 48 heures »). Peux-tu le tenir à chaque fois ? Sinon, donne-moi un délai réaliste.
+- [x] **Badge « Le plus choisi »** sur la formule Standard (`src/data/tarifs.ts`, `featured`) : c'est vrai aujourd'hui ? Si tu n'as pas encore assez de clients pour le dire, remplace par « Recommandé ».
+- [x] **Public visé** : l'accueil parle à tous les commerces de quartier (bouchers, primeurs…), la page Tarifs parle uniquement de restaurants. Les tarifs valent-ils pour tous les commerces ?
 
 ---
 
@@ -67,9 +67,9 @@ Une fois les infos du point 3 fournies, je peux les créer.
 
 Ces exemples servent à illustrer. Ils sont inventés, ce qui est normal pour une démo, mais vérifie qu'ils te conviennent.
 
-- [ ] **Téléphone de l'accueil** (`src/components/motion/HeroPhone.tsx`) : « Boucherie Martin », ses horaires et son adresse « Rue des Halles ».
-- [ ] **Démos** (`src/components/demos/DemoMockups.tsx`) : « Maison Roux », « Les Paniers de Léa », « Le Comptoir », leurs produits et leurs prix.
-- [ ] **Section « C'est mon rôle »** (`src/components/motion/SmsUpdate.tsx`) : le SMS « arrivage de bulots » et les heures 08:14 / 08:16.
+- [x] **Téléphone de l'accueil** (`src/components/motion/HeroPhone.tsx`) : « Boucherie Martin », ses horaires et son adresse « Rue des Halles ».
+- [x] **Démos** (`src/components/demos/DemoMockups.tsx`) : « Maison Roux », « Les Paniers de Léa », « Le Comptoir », leurs produits et leurs prix.
+- [x] **Section « C'est mon rôle »** (`src/components/motion/SmsUpdate.tsx`) : le SMS « arrivage de bulots » et les heures 08:14 / 08:16.
 
 ---
 

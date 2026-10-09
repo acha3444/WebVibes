@@ -138,7 +138,7 @@ export function BoucherieDemo() {
       <div className="wv-transient absolute inset-x-0 bottom-5 flex justify-center pointer-events-none">
         <div className="wv-anim wv-pop-72 bg-ink text-white text-[7px] font-medium px-2.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-lime text-ink text-[6px] font-bold flex items-center justify-center">✓</span>
-          Commande reçue · retrait le 24/12 à 10h
+          Demande envoyée, le commerçant vous confirme
         </div>
       </div>
     </BrowserFrame>
@@ -225,7 +225,7 @@ export function PrimeurDemo() {
 
       <div className="wv-anim wv-p-notif wv-transient absolute top-7 inset-x-3 bg-[#2f5d3a] text-white text-[6.5px] font-medium px-2 py-1 rounded-sm shadow-lg flex items-center gap-1.5">
         <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-        Arrivage mis à jour à 7h02 · 4 produits frais
+        Arrivage mis à jour (selon votre formule)
       </div>
     </BrowserFrame>
   );
@@ -314,8 +314,8 @@ export function RestaurantDemo() {
                   <circle cx="10" cy="10" r="9" fill="#2f5d3a" />
                   <path className="wv-anim wv-r-check" d="M5.5 10.5l3 3L14.5 7" pathLength={1} fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <p className="font-serif text-[8px] font-bold">Table réservée</p>
-                <p className="text-[6px] text-ink/55">Ce soir, 20h00 · 2 pers.</p>
+                <p className="font-serif text-[8px] font-bold">Demande envoyée</p>
+                <p className="text-[6px] text-ink/55">Le restaurateur vous confirme</p>
               </div>
             </div>
 
@@ -326,7 +326,7 @@ export function RestaurantDemo() {
 
       {/* Côté restaurateur */}
       <div className="wv-anim wv-r-notif wv-transient absolute right-3 top-[38%] w-[27%] bg-white shadow-xl px-2 py-1.5 border-l-2 border-[#d9a441]">
-        <p className="text-[6px] uppercase tracking-[0.12em] text-ink/50 font-semibold">Nouvelle réservation</p>
+        <p className="text-[6px] uppercase tracking-[0.12em] text-ink/50 font-semibold">Demande réservation</p>
         <p className="text-[7.5px] font-bold leading-tight mt-0.5">2 pers. · 20h00</p>
         <p className="text-[6px] text-ink/50">M. Benali</p>
       </div>

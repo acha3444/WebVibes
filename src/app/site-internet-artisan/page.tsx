@@ -2,9 +2,13 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Metadata } from "next";
 
+import { plans } from "@/data/tarifs";
+
+const basePrice = plans[0].monthly;
+
 export const metadata: Metadata = {
   title: "Création Site Internet Artisan Bâtiment & Clim | WebVibes",
-  description: "Artisan dans l'Hérault ? Obtenez un site internet pro qui génère des chantiers. Formule tout compris dès 89€/mois avec engagement 12 mois, livré sous 5 jours ouvrés.",
+  description: `Artisan dans l'Hérault ? Obtenez un site internet pro qui présente vos services. Formule tout compris dès ${basePrice} €/mois avec engagement 12 mois, livré sous 5 jours ouvrés.`,
   alternates: {
     canonical: "https://webvibes.fr/site-internet-artisan",
   }
@@ -36,7 +40,7 @@ export default function SiteArtisanPage() {
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-bold text-ink mb-4 font-serif">
-              Le site qui rapporte des chantiers, pour 89€/mois.
+              Le site pour votre activité, dès {basePrice} €/mois.
             </h2>
             <p className="mb-4">
               Oubliez les agences qui vous demandent 3000€ d'un coup. Avec WebVibes, vous obtenez un site internet professionnel, conçu spécialement pour l'artisanat :
@@ -60,7 +64,7 @@ export default function SiteArtisanPage() {
 
           <div className="pt-8">
             <a href="/#devis" className="inline-block bg-electric text-white px-8 py-4 text-lg font-semibold tag-cut-corner hover:bg-electric/90 transition-colors">
-              Faire le point sur mon projet (Gratuit)
+              Prendre rendez-vous
             </a>
           </div>
 
