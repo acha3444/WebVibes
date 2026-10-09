@@ -22,7 +22,7 @@ const description =
   `Trois formules pour votre site internet, dès ${basePrice} €/mois. Création, hébergement, maintenance inclus. Vous ne gérez rien. Réservé aux professionnels.`;
 
 export const metadata: Metadata = {
-  title: `Tarifs site internet commerce et artisan, dès ${basePrice} €/mois | WebVibes`,
+  title: `Tarifs site internet commerces de bouche et restaurants, dès ${basePrice} €/mois | WebVibes`,
   description,
   alternates: { canonical: `${SITE_URL}/tarifs` },
   openGraph: {
@@ -44,7 +44,7 @@ const jsonLd = {
   url: `${SITE_URL}/tarifs`,
   provider: { "@type": "Organization", name: "WebVibes", url: SITE_URL },
   areaServed: { "@type": "Country", name: "France" },
-  audience: { "@type": "BusinessAudience", audienceType: "Artisans, commerçants de proximité et indépendants" },
+  audience: { "@type": "BusinessAudience", audienceType: "Commerces de bouche et restaurants" },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Formules WebVibes",

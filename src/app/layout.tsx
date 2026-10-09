@@ -17,11 +17,11 @@ const bioRhyme = BioRhyme({
 });
 
 export const metadata: Metadata = {
-  title: "Création de site internet pour artisans & commerçants | WebVibes",
-  description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux artisans et commerçants de proximité. Zéro technique à gérer.`,
+  title: "Création de site internet pour commerces de bouche & restaurants | WebVibes",
+  description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux commerces de bouche et restaurants. Zéro technique à gérer.`,
   openGraph: {
-    title: "Création de site internet pour artisans & commerçants | WebVibes",
-    description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux artisans et commerçants de proximité.`,
+    title: "Création de site internet pour commerces de bouche & restaurants | WebVibes",
+    description: `WebVibes crée votre site internet clé en main dès ${basePrice} €/mois avec engagement 12 mois. Dédié aux commerces de bouche et restaurants.`,
     url: "https://webvibes.fr",
     siteName: "WebVibes",
     locale: "fr_FR",

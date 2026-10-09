@@ -86,7 +86,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
           <div className="max-w-2xl">
             <h1 className="text-sm sm:text-base font-bold text-ink/50 uppercase tracking-widest mb-4 block">
-              Création de site internet pour artisans & commerçants
+              Création de site internet pour commerces de bouche & restaurants
             </h1>
             <div className="font-serif text-[1.85rem] sm:text-5xl lg:text-[2.9rem] font-bold leading-[1.15] text-electric mb-5 sm:mb-8">
               <span className="wv-intro-line block"><span>Vous gérez votre commerce.</span></span>
@@ -137,16 +137,17 @@ export default function Home() {
             <p aria-hidden className="md:hidden shrink-0 text-xs font-semibold text-ink/50 pb-1">Glissez →</p>
           </div>
 
-          <div className="wv-snap -mx-5 px-5 scroll-px-5 flex gap-3 overflow-x-auto snap-x snap-mandatory md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-12 md:gap-y-14 md:overflow-visible">
-            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-x-12 md:gap-y-14">
+            <article className="bg-white border border-ink/10 p-5 md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Bouchers & Charcutiers
               </h3>
-              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed">
-                Affichage clair de vos horaires. Formulaire de commande à l'avance pour les fêtes et retrait en boutique.
+              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed mb-4">
+                Le client commande ses produits de fête à l'avance et voit vos spécialités. Il passe en boutique uniquement pour retirer sa commande.
               </p>
+              <a href="#demos" className="text-sm font-semibold text-electric hover:underline">Voir la démo →</a>
             </article>
-            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
+            <article className="bg-white border border-ink/10 p-5 md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Poissonniers
               </h3>
@@ -154,30 +155,37 @@ export default function Home() {
                 Mise à jour rapide de l'arrivage et des produits de saison (fréquence selon formule). Les clients savent ce qu'il y a sur l'étal avant de venir.
               </p>
             </article>
-            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
+            <article className="bg-white border border-ink/10 p-5 md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
-                Artisans (Électricité, Clim...)
+                Primeurs
+              </h3>
+              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed mb-4">
+                Mise en avant des produits de saison et des producteurs locaux. Le client connaît la provenance de ses fruits et légumes.
+              </p>
+              <a href="#demos" className="text-sm font-semibold text-electric hover:underline">Voir la démo →</a>
+            </article>
+            <article className="bg-white border border-ink/10 p-5 md:bg-transparent md:border-0 md:p-0">
+              <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
+                Boulangers & Pâtissiers
               </h3>
               <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed">
-                Présentation de vos certifications, galerie de vos chantiers, et module de demande d'intervention rapide.
+                Présentation de vos pains spéciaux et pâtisseries du week-end. Le client réserve ses desserts du dimanche en un clic.
               </p>
             </article>
-            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
-              <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
-                Créateurs & Boutiques
-              </h3>
-              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed">
-                Catalogue de vos créations, horaires, et formulaire de commande ou Click & Collect simple.
-              </p>
-            </article>
-            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
+            <article className="bg-white border border-ink/10 p-5 md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Restaurants & Traiteurs
               </h3>
-              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed">
-                Carte du jour à jour, réservation simple, et menus spéciaux toujours accessibles sur mobile.
+              <p className="text-[15px] sm:text-base text-ink/75 leading-relaxed mb-4">
+                La carte du jour est toujours à jour sur le téléphone du client. Il réserve sa table directement depuis les résultats Google.
               </p>
+              <a href="#demos" className="text-sm font-semibold text-electric hover:underline">Voir la démo →</a>
             </article>
+          </div>
+          <div className="mt-10 sm:mt-16 text-center">
+            <Link href="/tarifs" className="inline-block text-electric font-semibold border-b-2 border-electric pb-0.5 hover:text-electric/80 transition-colors">
+              Voir les tarifs pour ces métiers →
+            </Link>
           </div>
         </div>
       </section>
@@ -346,9 +354,9 @@ export default function Home() {
                   <option value="" className="text-ink">Sélectionner...</option>
                   <option value="boucherie" className="text-ink">Boucherie / Charcuterie</option>
                   <option value="poissonnerie" className="text-ink">Poissonnerie / Écailler</option>
+                  <option value="primeur" className="text-ink">Primeur</option>
+                  <option value="boulangerie" className="text-ink">Boulangerie / Pâtisserie</option>
                   <option value="restaurant" className="text-ink">Restaurant / Traiteur</option>
-                  <option value="artisan" className="text-ink">Artisan (Électricité, Clim, etc.)</option>
-                  <option value="boutique" className="text-ink">Créateur / Boutique</option>
                   <option value="autre" className="text-ink">Autre métier / commerce</option>
                 </select>
                 <svg viewBox="0 0 12 8" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-3 h-2 text-cream/60" aria-hidden>
@@ -432,7 +440,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto sm:text-center">
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold mb-4 sm:mb-6">L'esprit WebVibes</h2>
           <p className="text-base sm:text-lg text-ink/80 leading-relaxed mb-4 sm:mb-6">
-            Je m'adresse à ceux qui travaillent debout. J'ai créé WebVibes pour répondre à un besoin simple : les artisans ont des produits exceptionnels, mais souvent des sites internet qui ne leur rendent pas justice, ou tout simplement pas le temps de s'en occuper. 
+            Je m'adresse à ceux qui travaillent debout. J'ai créé WebVibes pour répondre à un besoin simple : les commerçants de proximité ont des produits exceptionnels, mais souvent des sites internet qui ne leur rendent pas justice, ou tout simplement pas le temps de s'en occuper. 
           </p>
           <p className="text-base sm:text-lg text-ink/80 leading-relaxed">
             Mon métier, c'est de traduire le vôtre sur internet, sans aucun charabia technique.
