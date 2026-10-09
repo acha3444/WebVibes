@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { desktopOrder, formatEuro, getPlan, legalNotice, NO_COMMITMENT_SURCHARGE } from "@/data/tarifs";
+import { desktopOrder, formatEuro, getPlan, legalNotice, NO_COMMITMENT_SURCHARGE, PRICE_LABEL } from "@/data/tarifs";
 
 // Bloc résumé des tarifs pour la page d'accueil, renvoie vers /tarifs.
 export function TarifsSummary() {
@@ -39,15 +39,15 @@ export function TarifsSummary() {
                 </div>
                 <p className="text-right shrink-0 md:hidden">
                   <span className="font-serif text-2xl font-bold">{formatEuro(plan.monthly)}</span>
-                  <span className="block text-xs font-semibold">HT/mois</span>
+                  <span className="block text-xs font-semibold">{PRICE_LABEL}/mois</span>
                 </p>
               </div>
               <p className="hidden md:flex items-baseline gap-1.5 mt-4">
                 <span className="font-serif text-4xl font-bold">{formatEuro(plan.monthly)}</span>
-                <span className="font-semibold text-sm">HT/mois</span>
+                <span className="font-semibold text-sm">{PRICE_LABEL}/mois</span>
               </p>
               <p className="text-xs sm:text-sm text-ink/75 mt-2">
-                + {formatEuro(plan.setup)} HT de création, une seule fois
+                + {formatEuro(plan.setup)} {PRICE_LABEL} de création, une seule fois
               </p>
             </li>
           );
@@ -56,7 +56,7 @@ export function TarifsSummary() {
 
       <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p className="text-xs sm:text-sm text-ink/75">
-          {legalNotice} Prix avec engagement de 12 mois, ou sans engagement pour +{NO_COMMITMENT_SURCHARGE}&nbsp;€ HT/mois.
+          {legalNotice} Prix avec engagement de 12 mois, ou sans engagement pour +{NO_COMMITMENT_SURCHARGE}&nbsp;€ {PRICE_LABEL}/mois.
         </p>
         <Link
           href="/tarifs"

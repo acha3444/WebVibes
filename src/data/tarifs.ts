@@ -1,6 +1,6 @@
 // Tarifs WebVibes : seul fichier à modifier pour changer un prix, une formule,
 // une ligne du comparatif ou une réponse de la FAQ. La mise en page lit ces données.
-// Tous les montants sont en euros hors taxes.
+// Tous les montants sont des prix finaux en euros (WebVibes ne facture pas de TVA).
 
 export type PlanId = "essentiel" | "standard" | "premium";
 
@@ -8,8 +8,8 @@ export type Plan = {
   id: PlanId;
   name: string;
   audience: string; // « pour qui », une phrase
-  monthly: number; // abonnement mensuel HT
-  setup: number; // création et mise en ligne HT, payée une seule fois
+  monthly: number; // abonnement mensuel
+  setup: number; // création et mise en ligne, payée une seule fois
   featured?: string; // libellé du badge de mise en avant
   highlights: string[]; // 3 à 4 points courts affichés sur la carte
   points: string[]; // liste complète (données structurées, comparatif)
@@ -103,8 +103,9 @@ export const includedEverywhere = [
   "Maintenance technique",
 ];
 
-// WebVibes est en franchise de TVA : aucune TVA ne s'ajoute aux prix affichés.
-export const legalNotice = "Tarifs hors taxes, réservés aux professionnels. TVA non applicable, art. 293 B du CGI.";
+// WebVibes est en franchise de TVA : le prix affiché est le prix final, rien ne s'y ajoute.
+export const PRICE_LABEL = "TTC";
+export const legalNotice = "Prix TTC, réservés aux professionnels. TVA non applicable, art. 293 B du CGI.";
 
 // Comparatif : true = inclus, false = non inclus, texte = valeur précise
 export type Cell = boolean | string;
@@ -186,14 +187,14 @@ export const faq: { question: string; answer: string[] }[] = [
   },
   {
     question: "Quelle est la durée d'engagement ?",
-    answer: ["L'engagement initial est de 12 mois (ce qui vous donne accès au tarif affiché). Vous pouvez aussi opter pour une formule sans engagement pour 10 € HT supplémentaires par mois, résiliable à tout moment."],
+    answer: ["L'engagement initial est de 12 mois (ce qui vous donne accès au tarif affiché). Vous pouvez aussi opter pour une formule sans engagement pour 10 € TTC supplémentaires par mois, résiliable à tout moment."],
   },
 ];
 
 // Engagement : les prix affichés (monthly) s'entendent avec un engagement de 12 mois.
 // Sans engagement, un supplément mensuel s'ajoute, résiliable à tout moment.
 export type Commitment = "engaged" | "free";
-export const NO_COMMITMENT_SURCHARGE = 10; // € HT par mois
+export const NO_COMMITMENT_SURCHARGE = 10; // € par mois
 // Économie sur une année d'engagement par rapport à la formule sans engagement (calculée)
 export const YEARLY_SAVING = NO_COMMITMENT_SURCHARGE * 12;
 export const commitmentLabels: Record<Commitment, { toggle: string; short: string; note: string }> = {

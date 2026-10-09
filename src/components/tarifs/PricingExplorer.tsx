@@ -5,6 +5,7 @@ import { BOOKING_URL } from "@/data/site";
 import {
   commitmentLabels,
   legalNotice,
+  PRICE_LABEL,
   desktopOrder,
   firstMonth,
   monthlyPrice,
@@ -121,7 +122,7 @@ function PlanCard({
   badge: string | null;
   index: number;
 }) {
-  const tax = "HT";
+  const tax = PRICE_LABEL;
   const monthly = monthlyPrice(plan, commitment);
   const setup = plan.setup;
   const first = firstMonth(plan, commitment);
@@ -192,7 +193,7 @@ function PlanCard({
         <div className="min-h-7 mt-1.5 flex items-center">
           {commitment === "engaged" ? (
             <span key="saving" className="wv-badge-pop inline-block bg-lime text-ink px-2 py-1 text-xs font-bold">
-              {formatEuro(YEARLY_SAVING)} HT économisés sur l&apos;année
+              {formatEuro(YEARLY_SAVING)} {PRICE_LABEL} économisés sur l&apos;année
             </span>
           ) : (
             <button
@@ -201,7 +202,7 @@ function PlanCard({
               onClick={onEngage}
               className="wv-fade-in text-xs font-semibold text-electric underline underline-offset-2 hover:text-ink transition-colors text-left"
             >
-              Avec engagement : −{formatEuro(YEARLY_SAVING)} HT par an
+              Avec engagement : −{formatEuro(YEARLY_SAVING)} {PRICE_LABEL} par an
             </button>
           )}
         </div>

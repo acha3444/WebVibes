@@ -403,7 +403,7 @@ export default function Home() {
                 Et si je veux arrêter le suivi ?
                 <span className="shrink-0 text-electric font-serif text-2xl leading-none group-open:rotate-45 transition-transform">+</span>
               </summary>
-              <p className="mt-3 sm:mt-4 text-[15px] sm:text-base text-ink/75 leading-relaxed">Vous choisissez : sans engagement à 99 € HT/mois, résiliable à tout moment, ou avec un engagement de 12 mois à 89 € HT/mois.</p>
+              <p className="mt-3 sm:mt-4 text-[15px] sm:text-base text-ink/75 leading-relaxed">Vous choisissez : sans engagement à 99 € TTC/mois, résiliable à tout moment, ou avec un engagement de 12 mois à 89 € TTC/mois.</p>
             </details>
             
             <details className="group border-b border-ink/10 pb-4 sm:pb-6">

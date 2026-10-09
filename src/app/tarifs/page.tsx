@@ -17,14 +17,14 @@ import {
 } from "@/data/tarifs";
 
 const description =
-  "Trois formules pour votre site internet, dès 89 € HT/mois. Création, hébergement, nom de domaine et maintenance inclus. Vous ne gérez rien. Réservé aux professionnels.";
+  "Trois formules pour votre site internet, dès 89 € TTC/mois. Création, hébergement, nom de domaine et maintenance inclus. Vous ne gérez rien. Réservé aux professionnels.";
 
 export const metadata: Metadata = {
-  title: "Tarifs site internet commerce et artisan, dès 89 € HT/mois | WebVibes",
+  title: "Tarifs site internet commerce et artisan, dès 89 € TTC/mois | WebVibes",
   description,
   alternates: { canonical: `${SITE_URL}/tarifs` },
   openGraph: {
-    title: "Tarifs WebVibes : un site pour votre activité, dès 89 € HT/mois",
+    title: "Tarifs WebVibes : un site pour votre activité, dès 89 € TTC/mois",
     description,
     url: `${SITE_URL}/tarifs`,
     siteName: "WebVibes",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-// Données structurées : un service proposé en trois offres, prix hors taxes
+// Données structurées : un service proposé en trois offres (prix finaux, pas de TVA facturée)
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -58,7 +58,6 @@ const jsonLd = {
           name: "Abonnement mensuel, engagement 12 mois",
           price: monthlyPrice(plan, "engaged"),
           priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
           referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
         },
         {
@@ -66,7 +65,6 @@ const jsonLd = {
           name: "Abonnement mensuel sans engagement",
           price: monthlyPrice(plan, "free"),
           priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
           referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
         },
         {
@@ -74,7 +72,6 @@ const jsonLd = {
           name: "Création et mise en ligne (une seule fois)",
           price: plan.setup,
           priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
         },
       ],
     })),
