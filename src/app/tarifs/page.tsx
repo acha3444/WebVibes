@@ -82,7 +82,7 @@ const jsonLd = {
   },
 };
 
-const section = "px-5 sm:px-6 py-14 sm:py-20 lg:py-24";
+const section = "px-5 sm:px-6 py-10 sm:py-20 lg:py-24";
 const h2 = "font-serif text-[1.6rem] sm:text-3xl font-bold leading-tight";
 
 // Affiche le marqueur [À COMPLÉTER] de façon bien visible
@@ -106,7 +106,7 @@ export default function TarifsPage() {
       <Header />
 
       {/* 1. Titre */}
-      <section className="px-5 sm:px-6 pt-10 pb-8 sm:pt-16 sm:pb-12 lg:pt-20 max-w-4xl mx-auto w-full text-center">
+      <section className="px-5 sm:px-6 pt-6 pb-6 sm:pt-16 sm:pb-12 lg:pt-20 max-w-4xl mx-auto w-full text-center">
         <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-ink/70 mb-3">Tarifs</p>
         <h1 className="font-serif text-[1.85rem] sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.15] text-electric">
           <span className="wv-intro-line"><span>Plus de clients.</span></span>
@@ -118,15 +118,15 @@ export default function TarifsPage() {
       </section>
 
       {/* 2. Formules (besoins, prix animés, cartes) + 3. Inclus partout */}
-      <section aria-labelledby="formules-titre" className="px-5 sm:px-6 pb-14 sm:pb-20 max-w-6xl mx-auto w-full">
+      <section aria-labelledby="formules-titre" className="px-5 sm:px-6 pb-10 sm:pb-20 max-w-6xl mx-auto w-full">
         <h2 id="formules-titre" className="sr-only">
           Les trois formules
         </h2>
         <PricingExplorer />
 
-        <p className="mt-6 lg:mt-10 text-sm text-ink/75 text-center">{legalNotice}</p>
+        <p className="mt-4 lg:mt-10 text-sm text-ink/75 text-center">{legalNotice}</p>
 
-        <PlayInView once decorative={false} className="mt-8 sm:mt-10 border-y border-ink/10 py-6 sm:py-7">
+        <PlayInView once decorative={false} className="mt-6 sm:mt-10 border-y border-ink/10 py-5 sm:py-7">
           <h2 className="text-center text-sm font-bold uppercase tracking-[0.12em] text-ink/70">Toujours inclus</h2>
           <ul className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3">
             {includedEverywhere.map((item, i) => (
@@ -145,7 +145,7 @@ export default function TarifsPage() {
         </PlayInView>
 
         {/* 4. Comparatif, replié par défaut */}
-        <div className="mt-10 sm:mt-12">
+        <div className="mt-7 sm:mt-12">
           <Disclosure variant="button" label="Comparer les formules en détail">
             <div className="max-w-4xl mx-auto pt-8 sm:pt-10">
               <h2 className="sr-only">Comparatif détaillé</h2>
@@ -156,7 +156,7 @@ export default function TarifsPage() {
       </section>
 
       {/* 5. FAQ */}
-      <section aria-labelledby="faq-titre" className="px-5 sm:px-6 py-14 sm:py-20 bg-white/50 border-y border-ink/5">
+      <section aria-labelledby="faq-titre" className="px-5 sm:px-6 py-10 sm:py-20 bg-white/50 border-y border-ink/5">
         <div className="max-w-3xl mx-auto">
           <h2 id="faq-titre" className="font-serif text-[1.6rem] sm:text-3xl font-bold leading-tight mb-4 sm:mb-6">
             Vos questions
@@ -176,7 +176,7 @@ export default function TarifsPage() {
       </section>
 
       {/* 6. Appel à l'action */}
-      <section aria-labelledby="rdv-titre" className="px-5 sm:px-6 py-14 sm:py-20 bg-electric text-white">
+      <section aria-labelledby="rdv-titre" className="px-5 sm:px-6 py-10 sm:py-20 bg-electric text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 id="rdv-titre" className="font-serif text-[1.75rem] sm:text-4xl font-bold leading-tight">
             Pas sûr de la formule&nbsp;?

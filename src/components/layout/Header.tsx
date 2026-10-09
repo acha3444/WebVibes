@@ -1,5 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { MobileMenu, type NavLink } from "./MobileMenu";
+
+const links: NavLink[] = [
+  { href: "/#services", label: "Pour quel commerce" },
+  { href: "/#fonctionnement", label: "Fonctionnement" },
+  { href: "/#demos", label: "Démos" },
+  { href: "/tarifs", label: "Tarifs" },
+];
 
 export function Header() {
   return (
@@ -12,16 +20,19 @@ export function Header() {
         </div>
         <Link href="/" className="font-bold text-base sm:text-lg">WebVibes</Link>
       </div>
-      <nav className="hidden md:flex items-center gap-5 lg:gap-8 text-[13px] lg:text-sm font-medium whitespace-nowrap">
-        <Link href="/#services" className="hover:text-electric transition-colors">Pour quel commerce</Link>
-        <Link href="/#fonctionnement" className="hover:text-electric transition-colors">Fonctionnement</Link>
-        <Link href="/#demos" className="hover:text-electric transition-colors">Démos</Link>
-        <Link href="/tarifs" className="hover:text-electric transition-colors">Tarifs</Link>
+      <nav aria-label="Menu principal" className="hidden md:flex items-center gap-5 lg:gap-8 text-[13px] lg:text-sm font-medium whitespace-nowrap">
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} className="hover:text-electric transition-colors">
+            {link.label}
+          </Link>
+        ))}
       </nav>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <Link href="/#devis" className="bg-electric text-white px-3 sm:px-4 py-2 text-[13px] sm:text-sm font-semibold tag-cut-corner whitespace-nowrap hover:bg-electric/90 transition-colors">
-          Demander un devis
+          <span className="sm:hidden">Devis gratuit</span>
+          <span className="hidden sm:inline">Demander un devis</span>
         </Link>
+        <MobileMenu links={links} />
       </div>
     </header>
   );

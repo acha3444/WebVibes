@@ -70,8 +70,7 @@ export const plans: Plan[] = [
   },
 ];
 
-// Ordre d'affichage : Standard en premier sur mobile, au centre sur ordinateur
-export const mobileOrder: PlanId[] = ["standard", "essentiel", "premium"];
+// Ordre d'affichage des formules (sur mobile, le carrousel s'ouvre centré sur Standard)
 export const desktopOrder: PlanId[] = ["essentiel", "standard", "premium"];
 
 // « Ce qui compte pour vous » : chaque besoin indique la formule minimale qui le couvre.

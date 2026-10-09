@@ -82,8 +82,8 @@ export default function Home() {
       <Header />
 
       {/* 2. ACCROCHE */}
-      <section className="px-5 sm:px-6 pt-8 pb-14 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-12 items-center">
+      <section className="px-5 sm:px-6 pt-6 pb-10 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-12 items-center">
           <div className="max-w-2xl">
             <h1 className="text-sm sm:text-base font-bold text-ink/50 uppercase tracking-widest mb-4 block">
               Création de site internet pour artisans & commerçants
@@ -95,7 +95,7 @@ export default function Home() {
             <div className="wv-intro-fade">
               <p className="text-base sm:text-xl text-ink/80 mb-7 sm:mb-10 leading-relaxed">
                 Horaires, carte, fermeture exceptionnelle : vous m&apos;envoyez un message, c&apos;est en ligne.
-                Chaque commerce a besoin d&apos;être trouvé, mais vous n&apos;avez pas le temps de gérer la technique.
+                <span className="hidden sm:inline"> Chaque commerce a besoin d&apos;être trouvé, mais vous n&apos;avez pas le temps de gérer la technique.</span>
               </p>
               <div className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 sm:gap-6">
                 <a href="#devis" className="w-full sm:w-auto text-center bg-electric text-white px-6 py-3.5 sm:py-3 font-semibold tag-cut-corner hover:bg-electric/90 transition-colors">
@@ -106,7 +106,7 @@ export default function Home() {
                 </a>
               </div>
 
-              <dl className="mt-8 sm:mt-12 pt-5 sm:pt-6 border-t border-ink/10 grid grid-cols-3 gap-3 sm:gap-5 text-[13px] sm:text-sm">
+              <dl className="mt-6 sm:mt-12 pt-4 sm:pt-6 border-t border-ink/10 grid grid-cols-3 gap-3 sm:gap-5 text-[13px] sm:text-sm">
                 <div>
                   <dt className="font-bold leading-snug">Devis gratuit</dt>
                   <dd className="hidden sm:block text-ink/60 mt-0.5">Sans engagement, adapté à votre commerce.</dd>
@@ -128,14 +128,17 @@ export default function Home() {
       </section>
 
       {/* 3. POUR QUEL COMMERCE */}
-      <section id="services" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 bg-white/50 border-y border-ink/5">
+      <section id="services" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-white/50 border-y border-ink/5">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-[1.6rem] sm:text-3xl lg:text-4xl font-bold leading-tight mb-6 sm:mb-12 lg:mb-16 max-w-2xl">
-            Ce que votre site fait pour vous, selon votre métier.
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-12 md:gap-y-14 divide-y divide-ink/10 md:divide-y-0">
-            <article className="py-4 first:pt-0 last:pb-0 md:py-0">
+          <div className="flex items-end justify-between gap-4 mb-5 sm:mb-12 lg:mb-16">
+            <h2 className="font-serif text-[1.6rem] sm:text-3xl lg:text-4xl font-bold leading-tight max-w-2xl">
+              Ce que votre site fait pour vous, selon votre métier.
+            </h2>
+            <p aria-hidden className="md:hidden shrink-0 text-xs font-semibold text-ink/50 pb-1">Glissez →</p>
+          </div>
+
+          <div className="wv-snap -mx-5 px-5 scroll-px-5 flex gap-3 overflow-x-auto snap-x snap-mandatory md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-x-12 md:gap-y-14 md:overflow-visible">
+            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Bouchers & Charcutiers
               </h3>
@@ -143,7 +146,7 @@ export default function Home() {
                 Affichage clair de vos horaires. Formulaire de commande à l'avance pour les fêtes et retrait en boutique.
               </p>
             </article>
-            <article className="py-4 first:pt-0 last:pb-0 md:py-0">
+            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Poissonniers
               </h3>
@@ -151,7 +154,7 @@ export default function Home() {
                 Mise à jour rapide de l'arrivage du jour et des produits de saison. Les clients savent ce qu'il y a sur l'étal avant de venir.
               </p>
             </article>
-            <article className="py-4 first:pt-0 last:pb-0 md:py-0">
+            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Artisans (Électricité, Clim...)
               </h3>
@@ -159,7 +162,7 @@ export default function Home() {
                 Présentation de vos certifications, galerie de vos chantiers, et module de demande d'intervention rapide.
               </p>
             </article>
-            <article className="py-4 first:pt-0 last:pb-0 md:py-0">
+            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Créateurs & Boutiques
               </h3>
@@ -167,7 +170,7 @@ export default function Home() {
                 Catalogue de vos créations, horaires, et formulaire de commande ou Click & Collect simple.
               </p>
             </article>
-            <article className="py-4 first:pt-0 last:pb-0 md:py-0">
+            <article className="shrink-0 w-[78%] snap-start bg-white border border-ink/10 p-4 md:w-auto md:bg-transparent md:border-0 md:p-0">
               <h3 className="font-bold text-lg sm:text-xl mb-1 sm:mb-3 text-electric">
                 Restaurants & Traiteurs
               </h3>
@@ -180,9 +183,9 @@ export default function Home() {
       </section>
 
       {/* 4. AVANT / APRÈS */}
-      <section className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <div>
+      <section className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
+        <div className="wv-snap -mx-5 px-5 pt-3 flex gap-4 overflow-x-auto snap-x snap-mandatory lg:mx-0 lg:px-0 lg:pt-0 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-start lg:overflow-visible">
+          <div className="shrink-0 w-[84%] snap-center lg:w-auto">
             <h3 className="font-serif text-xl sm:text-2xl font-bold mb-3 sm:mb-6 text-ink/40">Aujourd'hui</h3>
             <div className="border border-ink/10 p-5 sm:p-8">
               <p className="text-base sm:text-lg text-ink/70 leading-relaxed">
@@ -190,10 +193,10 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div>
-            <h3 className="font-serif text-xl sm:text-2xl font-bold mb-3 sm:mb-6 text-electric">Avec votre site</h3>
+          <div className="shrink-0 w-[84%] snap-center lg:w-auto">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold mb-3 sm:mb-6 text-electric">Avec votre site →</h3>
             <div className="border-2 border-electric p-5 sm:p-8 relative">
-              <div className="absolute -top-3 -right-3 w-6 h-6 bg-lime tag-cut-corner"></div>
+              <div className="absolute -top-3 right-0 lg:-right-3 w-6 h-6 bg-lime tag-cut-corner"></div>
               <p className="text-base sm:text-lg font-medium leading-relaxed">
                 Le client tape votre nom. Il arrive sur un site clair, rapide, à votre image. Les horaires sont justes, la carte est à jour. Il sait qu'il peut venir ou passer commande. Vous le rassurez avant même qu'il ne pousse la porte.
               </p>
@@ -203,19 +206,19 @@ export default function Home() {
       </section>
 
       {/* 5. LE SUIVI (SECTION DÉMO SMS) */}
-      <section id="fonctionnement" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 bg-electric text-white overflow-hidden">
+      <section id="fonctionnement" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-electric text-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-16 items-center">
             <div className="max-w-lg">
               <h2 className="font-serif text-[1.6rem] sm:text-4xl font-bold mb-5 sm:mb-8 leading-tight">
                 Vous n'avez pas de temps pour l'informatique. C'est mon rôle.
               </h2>
-              <p className="text-base sm:text-lg text-white/80 mb-8 sm:mb-12 leading-relaxed">
-                Je ne vous livre pas un site pour disparaître ensuite. Vous ne touchez à rien. 
+              <p className="text-base sm:text-lg text-white/80 sm:mb-12 leading-relaxed">
+                <span className="hidden sm:inline">Je ne vous livre pas un site pour disparaître ensuite. Vous ne touchez à rien. </span>
                 Hébergement, sécurité, nom de domaine : je gère. Un changement de carte ou une fermeture ? Vous m'envoyez un message, je mets à jour.
               </p>
               
-              <ul className="space-y-3 sm:space-y-4 text-[15px] sm:text-base">
+              <ul className="hidden sm:block space-y-3 sm:space-y-4 text-[15px] sm:text-base">
                 <li className="flex gap-3 sm:gap-4 border-b border-white/20 pb-3 sm:pb-4">
                   <span className="font-bold opacity-50 shrink-0 w-[5.5rem] sm:w-24">Avant</span>
                   <span>Création de A à Z (design, textes, mise en ligne).</span>
@@ -238,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* 6. DÉMOS */}
-      <section id="demos" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
+      <section id="demos" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
         <div className="flex items-end justify-between gap-4 mb-6 sm:mb-12 lg:mb-16">
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold">Démonstrations</h2>
           <p className="sm:hidden text-xs font-semibold text-ink/50 pb-1">Glissez →</p>
@@ -262,7 +265,7 @@ export default function Home() {
       </section>
 
       {/* 7. COMMENT ÇA SE PASSE */}
-      <section className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 bg-white/50 border-t border-ink/5">
+      <section className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-white/50 border-t border-ink/5">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold mb-8 sm:mb-12 lg:mb-16 sm:text-center">Comment ça se passe ?</h2>
           <PlayInView once decorative={false} className="relative space-y-7 sm:space-y-12">
@@ -291,7 +294,7 @@ export default function Home() {
       <TarifsSummary />
 
       {/* 8. RENDEZ-VOUS ZOHO */}
-      <section id="rendez-vous" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 max-w-5xl mx-auto w-full">
+      <section id="rendez-vous" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 max-w-5xl mx-auto w-full">
         <div className="bg-white border border-ink/10 px-6 py-10 sm:p-10 md:p-20 text-center relative overflow-hidden tag-cut-corner">
           {/* Décorations artisanales */}
           <div className="absolute top-0 left-0 w-2 h-full bg-electric"></div>
@@ -315,7 +318,7 @@ export default function Home() {
       </section>
 
       {/* 9. DEVIS */}
-      <section id="devis" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 bg-ink text-white">
+      <section id="devis" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-ink text-white">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-serif text-[1.75rem] sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-6 text-cream">Demander un devis</h2>
           <p className="text-cream/70 mb-8 sm:mb-12 text-base sm:text-lg">Chaque commerce est différent, le devis est gratuit et sans engagement.</p>
@@ -324,7 +327,7 @@ export default function Home() {
             {/* Honeypot anti-spam */}
             <input type="text" name="bot-field" className="hidden" tabIndex={-1} autoComplete="off" />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-cream/70 mb-1.5 sm:mb-2">Votre nom</label>
                 <input type="text" id="name" name="name" autoComplete="name" required className="w-full bg-cream/10 border border-cream/20 px-4 py-2.5 sm:py-3 text-cream placeholder-cream/30 focus:outline-none focus:border-electric transition-colors rounded-none" />
@@ -335,7 +338,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-[1.4fr_1fr] md:grid-cols-2 gap-3 sm:gap-6">
               <div>
                 <label htmlFor="metier" className="block text-sm font-medium text-cream/70 mb-1.5 sm:mb-2">Métier</label>
                 <div className="relative">
@@ -377,7 +380,7 @@ export default function Home() {
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-cream/70 mb-1.5 sm:mb-2">Votre message (facultatif)</label>
-              <textarea id="message" name="message" rows={3} className="w-full bg-cream/10 border border-cream/20 px-4 py-2.5 sm:py-3 text-cream placeholder-cream/30 focus:outline-none focus:border-electric transition-colors rounded-none resize-y"></textarea>
+              <textarea id="message" name="message" rows={2} className="w-full bg-cream/10 border border-cream/20 px-4 py-2.5 sm:py-3 text-cream placeholder-cream/30 focus:outline-none focus:border-electric transition-colors rounded-none resize-y"></textarea>
             </div>
             
             <p className="text-xs text-cream/70">Les informations saisies sont uniquement utilisées pour traiter votre demande de devis. <Link href="/confidentialite" className="underline underline-offset-2 hover:text-cream">Politique de confidentialité</Link></p>
@@ -390,7 +393,7 @@ export default function Home() {
       </section>
 
       {/* 10. FAQ */}
-      <section className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 bg-white/50 border-b border-ink/5">
+      <section className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 bg-white/50 border-b border-ink/5">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold mb-6 sm:mb-12">Questions fréquentes</h2>
           <div className="space-y-5 sm:space-y-8">
@@ -431,7 +434,7 @@ export default function Home() {
       </section>
 
       {/* 11. L'ESPRIT WEBVIBES */}
-      <section className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 max-w-4xl mx-auto w-full">
+      <section className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 max-w-4xl mx-auto w-full">
         <div className="max-w-2xl mx-auto sm:text-center">
           <h2 className="font-serif text-[1.6rem] sm:text-3xl font-bold mb-4 sm:mb-6">L'esprit WebVibes</h2>
           <p className="text-base sm:text-lg text-ink/80 leading-relaxed mb-4 sm:mb-6">

@@ -4,8 +4,8 @@ import { desktopOrder, formatEuro, getPlan, legalNotice, NO_COMMITMENT_SURCHARGE
 // Bloc résumé des tarifs pour la page d'accueil, renvoie vers /tarifs.
 export function TarifsSummary() {
   return (
-    <section id="tarifs" aria-labelledby="tarifs-titre" className="px-5 sm:px-6 py-14 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 sm:mb-10">
+    <section id="tarifs" aria-labelledby="tarifs-titre" className="px-5 sm:px-6 py-10 sm:py-20 lg:py-24 max-w-6xl mx-auto w-full">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4 sm:mb-10">
         <div>
           <h2 id="tarifs-titre" className="font-serif text-[1.6rem] sm:text-3xl font-bold">
             Tarifs
@@ -24,7 +24,7 @@ export function TarifsSummary() {
         {desktopOrder.map((id) => {
           const plan = getPlan(id);
           return (
-            <li key={id} className={`relative py-5 md:p-6 ${plan.featured ? "md:bg-white" : ""}`}>
+            <li key={id} className={`relative py-3.5 md:p-6 ${plan.featured ? "md:bg-white" : ""}`}>
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="font-serif text-xl font-bold text-electric">

@@ -26,9 +26,9 @@ export default function HeroPhone() {
       <div style={{ "--wv-loop": "14s" } as CSSProperties} className="contents">
         {/* Téléphone */}
         {/* Sur mobile le téléphone est réduit (scale) pour tenir à côté des légendes */}
-        <div className="relative shrink-0 w-[170px] h-[340px] min-[380px]:w-[184px] min-[380px]:h-[368px] sm:w-[230px] sm:h-[460px]" aria-hidden>
+        <div className="relative shrink-0 w-[161px] h-[322px] min-[380px]:w-[170px] min-[380px]:h-[340px] sm:w-[230px] sm:h-[460px]" aria-hidden>
           <div className="absolute -right-3 -bottom-3 sm:-right-4 sm:-bottom-4 w-16 h-16 sm:w-24 sm:h-24 bg-lime tag-cut-corner" />
-          <div className="absolute top-0 left-0 w-[230px] h-[460px] origin-top-left scale-[0.74] min-[380px]:scale-[0.8] sm:scale-100 rounded-[30px] bg-ink p-[6px] shadow-2xl">
+          <div className="absolute top-0 left-0 w-[230px] h-[460px] origin-top-left scale-[0.7] min-[380px]:scale-[0.74] sm:scale-100 rounded-[30px] bg-ink p-[6px] shadow-2xl">
             <div className="relative h-full rounded-[24px] overflow-hidden bg-white text-ink">
               <span className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-[18px] rounded-full bg-ink z-30" />
 

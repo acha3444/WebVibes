@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BOOKING_URL } from "@/data/site";
 import {
   commitmentLabels,
@@ -11,7 +11,6 @@ import {
   type Commitment,
   formatEuro,
   getPlan,
-  mobileOrder,
   needs,
   recommendPlan,
   type Plan,
@@ -51,8 +50,6 @@ function useCountTo(value: number) {
 
   return display;
 }
-
-const lgOrder = ["lg:order-1", "lg:order-2", "lg:order-3"];
 
 // Sélecteur à deux choix avec un fond qui glisse
 function Segmented<T extends string>({
@@ -107,7 +104,6 @@ function PlanCard({
   emphasized,
   badge,
   index,
-  first,
 }: {
   plan: Plan;
   mode: Mode;
@@ -115,7 +111,6 @@ function PlanCard({
   emphasized: boolean;
   badge: string | null;
   index: number;
-  first: boolean; // sur mobile, la formule conseillée passe en tête
 }) {
   const monthly = monthlyPrice(plan, commitment);
   const amount = mode === "monthly" ? monthly : firstMonth(plan, commitment);
@@ -125,16 +120,17 @@ function PlanCard({
   return (
     // Le wrapper porte l'apparition, la carte porte la mise en avant (pas de conflit d'animation)
     <div
-      className={`wv-once wv-fade-up ${first ? "order-first" : ""} ${lgOrder[desktopOrder.indexOf(plan.id)]}`}
+      data-plan={plan.id}
+      className="wv-once wv-fade-up shrink-0 w-[86%] snap-center lg:w-auto"
       style={{ animationDelay: `${index * 0.12}s` }}
     >
       <article
         aria-labelledby={titleId}
-        className={`relative h-full flex flex-col bg-white p-6 sm:p-7 tag-cut-corner border-2 transition-all duration-500 ease-out ${
+        className={`relative h-full flex flex-col bg-white p-5 sm:p-7 tag-cut-corner border-2 transition-all duration-500 ease-out ${
           emphasized ? "border-electric shadow-xl lg:-translate-y-2" : "border-ink/10"
         }`}
       >
-        <div className="h-6 mb-3">
+        <div className="h-6 mb-2 sm:mb-3">
           {badge && (
             <span
               key={badge}
@@ -150,8 +146,8 @@ function PlanCard({
         </h3>
         <p className="mt-1 text-ink/75 lg:min-h-[3rem]">{plan.audience}</p>
 
-        <p className="mt-5 flex items-baseline gap-1.5">
-          <span aria-hidden className="font-serif text-[2.75rem] leading-none font-bold tabular-nums">
+        <p className="mt-4 sm:mt-5 flex items-baseline gap-1.5">
+          <span aria-hidden className="font-serif text-[2.4rem] sm:text-[2.75rem] leading-none font-bold tabular-nums">
             {formatEuro(shown)}
           </span>
           <span aria-hidden className="font-semibold">
@@ -180,7 +176,7 @@ function PlanCard({
           </span>
         </p>
 
-        <ul className="flex-1 mt-6 pt-6 border-t border-ink/10 space-y-2.5 text-[15px] leading-snug">
+        <ul className="flex-1 mt-4 pt-4 sm:mt-6 sm:pt-6 border-t border-ink/10 space-y-2.5 text-[15px] leading-snug">
           {plan.highlights.map((point) => (
             <li key={point} className="flex gap-2.5">
               <CheckIcon className="mt-0.5 w-4 h-4 shrink-0 text-electric" />
@@ -193,7 +189,7 @@ function PlanCard({
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className={`mt-7 block text-center px-5 py-3.5 font-semibold tag-cut-corner transition-colors duration-300 ${
+          className={`mt-5 sm:mt-7 block text-center px-5 py-3.5 font-semibold tag-cut-corner transition-colors duration-300 ${
             emphasized
               ? "bg-electric text-white hover:bg-ink"
               : "border-2 border-electric text-electric hover:bg-electric hover:text-white"
@@ -213,6 +209,44 @@ export function PricingExplorer() {
   const [selected, setSelected] = useState<string[]>([]);
   const recommended = recommendPlan(selected);
   const emphasizedId: PlanId = recommended ?? "standard";
+
+  // Carrousel mobile : une carte à la fois, onglets synchronisés avec le défilement
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<PlanId>("standard");
+
+  const scrollToPlan = useCallback((id: PlanId, smooth = true) => {
+    const track = trackRef.current;
+    const card = track?.querySelector<HTMLElement>(`[data-plan="${id}"]`);
+    if (!track || !card || track.scrollWidth <= track.clientWidth) return; // ordinateur : pas de carrousel
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollTo({
+      left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
+      behavior: smooth && !reduce ? "smooth" : "auto",
+    });
+  }, []);
+
+  // Au chargement, la formule mise en avant est centrée
+  useEffect(() => scrollToPlan("standard", false), [scrollToPlan]);
+  // Quand une formule est conseillée, on la fait venir à l'écran
+  useEffect(() => {
+    if (recommended) scrollToPlan(recommended);
+  }, [recommended, scrollToPlan]);
+
+  const onTrackScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let best: PlanId = active;
+    let bestDist = Infinity;
+    track.querySelectorAll<HTMLElement>("[data-plan]").forEach((el) => {
+      const d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
+      if (d < bestDist) {
+        bestDist = d;
+        best = el.dataset.plan as PlanId;
+      }
+    });
+    if (best !== active) setActive(best);
+  };
 
   const toggleNeed = (id: string) =>
     setSelected((prev) => (prev.includes(id) ? prev.filter((n) => n !== id) : [...prev, id]));
@@ -262,7 +296,7 @@ export function PricingExplorer() {
       </fieldset>
 
       {/* Engagement + Chaque mois / Premier mois */}
-      <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+      <div className="mt-4 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4">
         <Segmented
           label="Durée d'engagement"
           value={commitment}
@@ -283,25 +317,54 @@ export function PricingExplorer() {
         />
       </div>
 
-      {/* Cartes */}
-      <PlayInView once decorative={false} className="mt-6 sm:mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:items-stretch">
-        {mobileOrder.map((id, i) => {
+      {/* Onglets (mobile) : aperçu des 3 prix, touchez pour afficher la carte */}
+      <div role="group" aria-label="Choisir une formule" className="lg:hidden mt-5 grid grid-cols-3 gap-1.5">
+        {desktopOrder.map((id) => {
           const plan = getPlan(id);
-          const isRecommended = recommended === id;
-          const badge = isRecommended ? "Conseillé pour vous" : !recommended && plan.featured ? plan.featured : null;
+          const on = active === id;
           return (
-            <PlanCard
+            <button
               key={id}
-              plan={plan}
-              mode={mode}
-              commitment={commitment}
-              index={i}
-              emphasized={emphasizedId === id}
-              first={isRecommended}
-              badge={badge}
-            />
+              type="button"
+              aria-pressed={on}
+              onClick={() => scrollToPlan(id)}
+              className={`py-2 px-1 border-2 text-center transition-colors duration-300 ${
+                on ? "border-electric bg-electric text-white" : "border-ink/10 bg-white text-ink"
+              }`}
+            >
+              <span className="block text-[13px] font-bold leading-tight">{plan.name}</span>
+              <span className={`block text-xs tabular-nums ${on ? "text-white/85" : "text-ink/65"}`}>
+                {formatEuro(mode === "monthly" ? monthlyPrice(plan, commitment) : firstMonth(plan, commitment))}
+              </span>
+            </button>
           );
         })}
+      </div>
+
+      {/* Cartes : carrousel sur mobile, grille sur ordinateur */}
+      <PlayInView once decorative={false} className="mt-4 sm:mt-6 lg:mt-10">
+        <div
+          ref={trackRef}
+          onScroll={onTrackScroll}
+          className="wv-snap -mx-5 px-5 flex gap-3 overflow-x-auto snap-x snap-mandatory lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:items-stretch lg:overflow-visible"
+        >
+          {desktopOrder.map((id, i) => {
+            const plan = getPlan(id);
+            const isRecommended = recommended === id;
+            const badge = isRecommended ? "Conseillé pour vous" : !recommended && plan.featured ? plan.featured : null;
+            return (
+              <PlanCard
+                key={id}
+                plan={plan}
+                mode={mode}
+                commitment={commitment}
+                index={i}
+                emphasized={emphasizedId === id}
+                badge={badge}
+              />
+            );
+          })}
+        </div>
       </PlayInView>
     </div>
   );
