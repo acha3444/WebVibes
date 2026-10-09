@@ -12,7 +12,6 @@ import {
   monthlyPrice,
   faq,
   includedEverywhere,
-  legalNotice,
   plans,
   TODO,
 } from "@/data/tarifs";
@@ -124,7 +123,6 @@ export default function TarifsPage() {
         </h2>
         <PricingExplorer />
 
-        <p className="mt-4 lg:mt-10 text-sm text-ink/75 text-center">{legalNotice}</p>
 
         <PlayInView once decorative={false} className="mt-6 sm:mt-10 border-y border-ink/10 py-5 sm:py-7">
           <h2 className="text-center text-sm font-bold uppercase tracking-[0.12em] text-ink/70">Toujours inclus</h2>

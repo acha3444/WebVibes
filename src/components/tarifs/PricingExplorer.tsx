@@ -3,7 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BOOKING_URL } from "@/data/site";
 import {
+  applyTax,
   commitmentLabels,
+  legalNotice,
+  VAT_RATE,
   desktopOrder,
   firstMonth,
   monthlyPrice,
@@ -39,7 +42,7 @@ function useCountTo(value: number) {
     const tick = (now: number) => {
       const p = Math.min(1, (now - t0) / 550);
       const eased = 1 - Math.pow(1 - p, 3);
-      const v = Math.round(start + (value - start) * eased);
+      const v = Math.round((start + (value - start) * eased) * 100) / 100; // au centime près
       current.current = v;
       setDisplay(v);
       if (p < 1) raf = requestAnimationFrame(tick);
@@ -97,10 +100,41 @@ function Segmented<T extends string>({
   );
 }
 
+// Interrupteur HT / TTC : la pastille glisse de gauche à droite.
+// Les mots HT et TTC sont cliquables à la souris ; au clavier, l'interrupteur suffit.
+function TaxSwitch({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <div className="flex items-center justify-center gap-2.5 py-1 text-sm font-bold">
+      <span aria-hidden onClick={() => onChange(false)} className={`cursor-pointer transition-colors ${checked ? "text-ink/45" : "text-ink"}`}>
+        HT
+      </span>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        aria-label={`Afficher les prix TTC (TVA ${Math.round(VAT_RATE * 100)} % incluse)`}
+        onClick={() => onChange(!checked)}
+        className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${checked ? "bg-electric" : "bg-ink/25"}`}
+      >
+        <span
+          aria-hidden
+          className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-300 ease-out ${
+            checked ? "translate-x-5" : ""
+          }`}
+        />
+      </button>
+      <span aria-hidden onClick={() => onChange(true)} className={`cursor-pointer transition-colors ${checked ? "text-ink" : "text-ink/45"}`}>
+        TTC
+      </span>
+    </div>
+  );
+}
+
 function PlanCard({
   plan,
   mode,
   commitment,
+  ttc,
   emphasized,
   badge,
   index,
@@ -108,12 +142,16 @@ function PlanCard({
   plan: Plan;
   mode: Mode;
   commitment: Commitment;
+  ttc: boolean;
   emphasized: boolean;
   badge: string | null;
   index: number;
 }) {
-  const monthly = monthlyPrice(plan, commitment);
-  const amount = mode === "monthly" ? monthly : firstMonth(plan, commitment);
+  const tax = ttc ? "TTC" : "HT";
+  const monthly = applyTax(monthlyPrice(plan, commitment), ttc);
+  const setup = applyTax(plan.setup, ttc);
+  const first = applyTax(firstMonth(plan, commitment), ttc);
+  const amount = mode === "monthly" ? monthly : first;
   const shown = useCountTo(amount);
   const titleId = `formule-${plan.id}`;
 
@@ -151,23 +189,23 @@ function PlanCard({
             {formatEuro(shown)}
           </span>
           <span aria-hidden className="font-semibold">
-            {mode === "monthly" ? "HT/mois" : "HT"}
+            {mode === "monthly" ? `${tax}/mois` : tax}
           </span>
           <span className="sr-only">
             {mode === "monthly"
-              ? `${formatEuro(monthly)} HT par mois`
-              : `${formatEuro(firstMonth(plan, commitment))} HT le premier mois`}
+              ? `${formatEuro(monthly)} ${tax} par mois`
+              : `${formatEuro(first)} ${tax} le premier mois`}
             {`, ${commitmentLabels[commitment].note}`}
           </span>
         </p>
-        <p key={mode + commitment} aria-hidden className="wv-fade-in mt-2 text-sm text-ink/75 leading-snug min-h-[3.5rem]">
+        <p key={mode + commitment + tax} aria-hidden className="wv-fade-in mt-2 text-sm text-ink/75 leading-snug min-h-[3.5rem]">
           {mode === "monthly" ? (
-            <>+ {formatEuro(plan.setup)} HT de création et mise en ligne, une seule fois</>
+            <>+ {formatEuro(setup)} {tax} de création et mise en ligne, une seule fois</>
           ) : (
             <>
-              {formatEuro(plan.setup)} de création + {formatEuro(monthly)} d&apos;abonnement.
+              {formatEuro(setup)} de création + {formatEuro(monthly)} d&apos;abonnement.
               <br />
-              Ensuite : <strong className="text-ink">{formatEuro(monthly)} HT/mois</strong>
+              Ensuite : <strong className="text-ink">{formatEuro(monthly)} {tax}/mois</strong>
             </>
           )}
           <span className="mt-1 flex items-center gap-1.5 font-semibold text-ink">
@@ -206,6 +244,7 @@ function PlanCard({
 export function PricingExplorer() {
   const [mode, setMode] = useState<Mode>("monthly");
   const [commitment, setCommitment] = useState<Commitment>("engaged");
+  const [ttc, setTtc] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const recommended = recommendPlan(selected);
   const emphasizedId: PlanId = recommended ?? "standard";
@@ -303,7 +342,12 @@ export function PricingExplorer() {
           onChange={setCommitment}
           options={[
             { value: "engaged", label: commitmentLabels.engaged.toggle, short: commitmentLabels.engaged.short },
-            { value: "free", label: commitmentLabels.free.toggle, short: commitmentLabels.free.short, extra: `+${NO_COMMITMENT_SURCHARGE} €` },
+            {
+              value: "free",
+              label: commitmentLabels.free.toggle,
+              short: commitmentLabels.free.short,
+              extra: `+${formatEuro(applyTax(NO_COMMITMENT_SURCHARGE, ttc))}`,
+            },
           ]}
         />
         <Segmented
@@ -315,6 +359,7 @@ export function PricingExplorer() {
             { value: "first", label: "Premier mois" },
           ]}
         />
+        <TaxSwitch checked={ttc} onChange={setTtc} />
       </div>
 
       {/* Onglets (mobile) : aperçu des 3 prix, touchez pour afficher la carte */}
@@ -334,7 +379,7 @@ export function PricingExplorer() {
             >
               <span className="block text-[13px] font-bold leading-tight">{plan.name}</span>
               <span className={`block text-xs tabular-nums ${on ? "text-white/85" : "text-ink/65"}`}>
-                {formatEuro(mode === "monthly" ? monthlyPrice(plan, commitment) : firstMonth(plan, commitment))}
+                {formatEuro(applyTax(mode === "monthly" ? monthlyPrice(plan, commitment) : firstMonth(plan, commitment), ttc))}
               </span>
             </button>
           );
@@ -358,6 +403,7 @@ export function PricingExplorer() {
                 plan={plan}
                 mode={mode}
                 commitment={commitment}
+                ttc={ttc}
                 index={i}
                 emphasized={emphasizedId === id}
                 badge={badge}
@@ -366,6 +412,12 @@ export function PricingExplorer() {
           })}
         </div>
       </PlayInView>
+
+      <p aria-live="polite" className="mt-4 lg:mt-10 text-sm text-ink/75 text-center">
+        {ttc
+          ? `Prix TTC, TVA ${Math.round(VAT_RATE * 100)} % incluse. Tarifs réservés aux professionnels.`
+          : legalNotice}
+      </p>
     </div>
   );
 }

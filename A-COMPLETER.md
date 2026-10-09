@@ -43,8 +43,8 @@ Sans ces infos, je ne peux pas rédiger les mentions légales (obligatoires pour
 - [ ] **Adresse professionnelle** (une domiciliation suffit).
 - [ ] **E-mail et téléphone de contact** : le site n'en affiche aucun aujourd'hui (le pied de page n'a que « Demander un devis »).
 - [ ] **Régime de TVA** : es-tu en franchise de TVA (micro-entreprise) ou assujetti ?
-  → Si franchise : j'ajoute « TVA non applicable, art. 293 B du CGI » à côté des prix HT.
-  → Si assujetti : donne-moi ton numéro de TVA intracommunautaire.
+  → Si franchise : j'ajoute « TVA non applicable, art. 293 B du CGI » à côté des prix HT, et **je retire l'interrupteur HT / TTC** de la page Tarifs (en franchise, le prix TTC = le prix HT, afficher +20 % serait faux).
+  → Si assujetti : donne-moi ton numéro de TVA intracommunautaire. L'interrupteur HT / TTC utilise 20 % (`VAT_RATE` dans `src/data/tarifs.ts`).
 - [ ] **Hébergeur du site** : nom, adresse et téléphone de l'hébergeur (mention obligatoire dans les mentions légales).
 
 ---

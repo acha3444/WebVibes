@@ -205,7 +205,20 @@ export const monthlyPrice = (plan: Plan, commitment: Commitment = "engaged") =>
 export const firstMonth = (plan: Plan, commitment: Commitment = "engaged") =>
   monthlyPrice(plan, commitment) + plan.setup;
 
-export const formatEuro = (amount: number) =>
-  `${new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(amount)} €`;
+// TVA : taux utilisé quand le visiteur affiche les prix TTC.
+// À ajuster selon ton régime (en franchise de TVA, il n'y a pas de TTC : voir A-COMPLETER.md).
+export const VAT_RATE = 0.2;
+
+export const applyTax = (amount: number, taxIncluded: boolean) =>
+  taxIncluded ? Math.round(amount * (1 + VAT_RATE) * 100) / 100 : amount;
+
+// Centimes affichés seulement quand le montant n'est pas rond (ex. 106,80 €)
+export const formatEuro = (amount: number) => {
+  const round = Number.isInteger(amount);
+  return `${new Intl.NumberFormat("fr-FR", {
+    minimumFractionDigits: round ? 0 : 2,
+    maximumFractionDigits: round ? 0 : 2,
+  }).format(amount)} €`;
+};
 
 export const getPlan = (id: PlanId) => plans.find((p) => p.id === id)!;
