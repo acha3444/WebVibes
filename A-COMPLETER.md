@@ -38,13 +38,14 @@ Le site dit aujourd'hui des choses différentes selon les pages. Un client (ou u
 
 Sans ces infos, je ne peux pas rédiger les mentions légales (obligatoires pour tout site professionnel).
 
-- [ ] **Nom légal et forme** : entreprise individuelle, micro-entreprise, SASU… et le nom de la personne ou de la société.
-- [ ] **SIRET** (ou SIREN).
-- [ ] **Adresse professionnelle** (une domiciliation suffit).
+- [x] **Forme juridique** : SASU.
+- [ ] **Dénomination sociale** : le nom exact de la société tel qu'inscrit au registre (« WebVibes SASU » ? autre ?).
+- [ ] **Capital social** : montant en euros (ex. « SASU au capital de 1 000 € »).
+- [ ] **Immatriculation** : numéro SIREN et ville du RCS (ex. « RCS Montpellier 123 456 789 »).
+- [ ] **Siège social** : adresse complète (une domiciliation suffit).
+- [ ] **Président de la SASU** : ton nom et prénom. C'est aussi le « directeur de la publication » du site.
 - [ ] **E-mail et téléphone de contact** : le site n'en affiche aucun aujourd'hui (le pied de page n'a que « Demander un devis »).
-- [ ] **Régime de TVA** : es-tu en franchise de TVA (micro-entreprise) ou assujetti ?
-  → Si franchise : j'ajoute « TVA non applicable, art. 293 B du CGI » à côté des prix HT, et **je retire l'interrupteur HT / TTC** de la page Tarifs (en franchise, le prix TTC = le prix HT, afficher +20 % serait faux).
-  → Si assujetti : donne-moi ton numéro de TVA intracommunautaire. L'interrupteur HT / TTC utilise 20 % (`VAT_RATE` dans `src/data/tarifs.ts`).
+- [x] **Régime de TVA** : franchise en base (pas de TVA). La mention « TVA non applicable, art. 293 B du CGI » est affichée sous les prix. Elle devra aussi figurer sur tes devis et factures.
 - [ ] **Hébergeur du site** : nom, adresse et téléphone de l'hébergeur (mention obligatoire dans les mentions légales).
 
 ---

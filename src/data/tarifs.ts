@@ -103,7 +103,8 @@ export const includedEverywhere = [
   "Maintenance technique",
 ];
 
-export const legalNotice = "Tarifs hors taxes, réservés aux professionnels.";
+// WebVibes est en franchise de TVA : aucune TVA ne s'ajoute aux prix affichés.
+export const legalNotice = "Tarifs hors taxes, réservés aux professionnels. TVA non applicable, art. 293 B du CGI.";
 
 // Comparatif : true = inclus, false = non inclus, texte = valeur précise
 export type Cell = boolean | string;
@@ -204,13 +205,6 @@ export const monthlyPrice = (plan: Plan, commitment: Commitment = "engaged") =>
 
 export const firstMonth = (plan: Plan, commitment: Commitment = "engaged") =>
   monthlyPrice(plan, commitment) + plan.setup;
-
-// TVA : taux utilisé quand le visiteur affiche les prix TTC.
-// À ajuster selon ton régime (en franchise de TVA, il n'y a pas de TTC : voir A-COMPLETER.md).
-export const VAT_RATE = 0.2;
-
-export const applyTax = (amount: number, taxIncluded: boolean) =>
-  taxIncluded ? Math.round(amount * (1 + VAT_RATE) * 100) / 100 : amount;
 
 // Centimes affichés seulement quand le montant n'est pas rond (ex. 106,80 €)
 export const formatEuro = (amount: number) => {
